@@ -1,0 +1,6 @@
+Parts
+{
+    CorridorFireExtinguisher     = "настенный огнетушитель"
+    CorridorFireExtinguisherDesc = &<./Data/strings/ru.rules>/Parts/FireExtinguisherDesc
+    CorridorFireExtinguisherIcon = &CorridorFireExtinguisher
+}

@@ -1,0 +1,6 @@
+Parts
+{
+    CorridorFireExtinguisher     = "Extintor de incendios de pared"
+    CorridorFireExtinguisherDesc = &<./Data/strings/es.rules>/Parts/FireExtinguisherDesc
+    CorridorFireExtinguisherIcon = &CorridorFireExtinguisher
+}

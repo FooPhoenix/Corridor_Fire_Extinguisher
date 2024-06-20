@@ -1,0 +1,21 @@
+╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║ Version         : 1.0.0                                                                                              ║
+║ Committed       : 2024.06.20                                                                                         ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+The first release of the project.
+
+───> Added      <───────────────────────────────────────────────────────────────────────────────────────────────────────
+
+    - The part "Corridor Fire Extinguisher".
+    - Current language available : DE, EN, ES, FR, RU
+    - Two steam preview images.
+    - The changelog file.
+    - The licence file.
+    - The version file.
+    
+───> Changed    <───────────────────────────────────────────────────────────────────────────────────────────────────────
+
+    - Update the 'ProhibitedBy' property of the "Corridor" part.
+    - Update the 'ProhibitedBy' property of the "Conveyor" part.
+    

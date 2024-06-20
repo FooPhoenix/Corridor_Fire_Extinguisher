@@ -1,0 +1,117 @@
+Part : <./Data/ships/terran/base_part_terran.rules>/Part
+{
+    // === ID ==============================================
+
+	ID = FooPhoenix.CorridorFireExtinguisher
+    
+    // === Description =====================================
+
+	NameKey = "Parts/CorridorFireExtinguisher"
+    DescriptionKey = "Parts/CorridorFireExtinguisherDesc"
+	IconNameKey = "Parts/CorridorFireExtinguisherIcon"
+
+    // === Classification ==================================
+
+	EditorGroups = &<./Data/ships/terran/fire_extinguisher/fire_extinguisher.rules>/Part/EditorGroups
+	TypeCategories = [fire_extinguisher, corridor]
+
+	Resources = &<./Data/ships/terran/fire_extinguisher/fire_extinguisher.rules>/Part/Resources
+
+	ReceivableBuffs : ^/0/ReceivableBuffs []
+
+    // === Properties ======================================
+
+	Size = [1, 1]
+    
+	IsRotateable = true
+    IsFlippable = false
+	IgnoreRotationForMirroredSelection = false
+	
+    IsWalled = false
+	IsSelfDestructible = false
+	GeneratorRequiresDoor = false
+	CreatePartPerTileWhenGrabbed = ""
+	
+    MaxHealth = &<./Data/ships/terran/corridor/corridor.rules>/Part/MaxHealth
+
+	CrewSpeedFactor          = &<./Data/ships/terran/corridor/corridor.rules>/Part/CrewSpeedFactor
+	CrewCongestedSpeedFactor = &<./Data/ships/terran/corridor/corridor.rules>/Part/CrewCongestedSpeedFactor
+
+	EditorIcon
+	{
+		Texture
+		{
+			File = "gui/icon.png"
+			SampleMode = Linear
+		}
+		Size = [32, 32]
+	}
+
+    // === Restrictions ====================================
+
+    // The fire extinguisher need to be on a wall, but the part has no wall and no way to force a wall only on the top
+    // of the part without struggling with doors. So we need to be sure the part on the top of this one will have a
+    // wall. 
+	ProhibitedBy : ^/0/ProhibitedBy [need_wall]
+	ProhibitRects
+	[
+		[need_wall, [0, -1, 1, 1]]
+	]
+
+    // It is not allowed to put a door on the fire extinguisher's wall (the top of the part).
+	AllowedDoorLocations
+	[
+		[-1, 0]
+		[ 1, 0]
+		[ 0, 1]
+	]
+    
+    // === Components ======================================
+	Components : ^/0/Components
+	{
+        // Import from the original Fire extinguisher
+		ExtinguisherStorage  = &<./Data/ships/terran/fire_extinguisher/fire_extinguisher.rules>/Part/Components/ExtinguisherStorage
+		ExtinguisherProducer = &<./Data/ships/terran/fire_extinguisher/fire_extinguisher.rules>/Part/Components/ExtinguisherProducer
+		ProgressBar          = &<./Data/ships/terran/fire_extinguisher/fire_extinguisher.rules>/Part/Components/ProgressBar
+		ExtinguisherSprite   : &<./Data/ships/terran/fire_extinguisher/fire_extinguisher.rules>/Part/Components/ExtinguisherSprite
+		{
+			Location = [.5, .25] // Put the fire extinguisher on the top wall.
+			Layer = "doodads_low"
+		}
+
+        // Import from the original Corridor
+		DestroyedEffects = &<./Data/ships/terran/corridor/corridor.rules>/Part/Components/DestroyedEffects
+        WallsBlend       = &<./Data/ships/terran/corridor/corridor.rules>/Part/Components/WallsBlend
+		BlueprintWalls   = &<./Data/ships/terran/corridor/corridor.rules>/Part/Components/BlueprintWalls
+
+		Graphics : &<./Data/ships/terran/corridor/corridor.rules>/Part/Components/Graphics
+		{
+			Floor
+			{
+				Layer = "floors"
+				RandomUVRotation = false
+				DamageLevels
+				[
+					{
+						File = "floor.png"
+						Size = [1, 1]
+					}
+				]
+			}
+		}
+
+		Blueprints
+		{
+			Type = BlueprintSprite
+			File = "blueprints.png"
+			Size = [1, 1]
+		}
+
+	}
+
+	Stats
+	{
+		AbilityCooldown = &~/Part/Components/ExtinguisherProducer/Interval
+	}
+
+}

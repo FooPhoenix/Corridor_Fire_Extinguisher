@@ -1,0 +1,54 @@
+ID = FooPhoenix.CorridorFireExtinguisher
+Author = "FooPhoenix"
+Name = "Corridor Fire Extinguisher"
+Version = 1.0.0
+
+CompatibleGameVersions = ["0.20.6"]
+
+ModifiesMultiplayer = true
+
+Description = "It is a fire extinguisher mounted on a corridor wall."
+Logo = "logo.png"
+
+StringsFolder = "strings"
+
+Actions
+[
+    // Update conveyor for the wall restriction.
+	{
+		Action = Add
+		AddTo = "<ships/terran/conveyor/conveyor.rules>/Part"
+
+		OnlyIfNotExisting = false
+		IgnoreIfNotExisting = false
+        
+        Name = ProhibitedBy
+        ToAdd = [need_wall]
+	}
+	
+    // Update corridor for the wall restriction.
+    {
+		Action = Add
+		AddTo = "<ships/terran/corridor/corridor.rules>/Part"
+
+		OnlyIfNotExisting = false
+		IgnoreIfNotExisting = false
+        
+        Name = ProhibitedBy
+        ToAdd = [need_wall]
+	}
+
+    // Add the part
+    {
+		Action = AddMany
+		AddTo = "<ships/terran/terran.rules>/Terran/Parts"
+        
+		CreateIfNotExisting = false
+		IgnoreIfNotExisting = false
+        
+		ManyToAdd
+		[
+			&<corridor_fire_extinguisher/corridor_fire_extinguisher.rules>/Part
+		]
+	}
+]
